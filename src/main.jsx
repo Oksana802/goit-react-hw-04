@@ -8,7 +8,17 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <>
       <App />
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            background: "#FFFDC1",
+            color: "#000",
+            fontSize: "12px",
+          },
+        }}
+      />
     </>
   </StrictMode>
 );

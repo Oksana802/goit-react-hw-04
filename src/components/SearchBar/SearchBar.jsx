@@ -17,8 +17,8 @@ const SearchBar = ({ onChangQuery }) => {
             <HiMagnifyingGlass />
           </button>
           <Field
-            // autoComplete="off"
-            // autoFocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             name="query"
           />
