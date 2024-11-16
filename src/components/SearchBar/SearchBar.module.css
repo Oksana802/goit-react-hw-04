@@ -1,0 +1,6 @@
+.box {
+  margin: 0 auto;
+  background-color: blue;
+  text-align: center;
+  box-shadow: 0 4px 4px 0 rgba(46, 43, 43, 0.6);
+}
