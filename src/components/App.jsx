@@ -7,7 +7,6 @@ import Loader from "./Loader/Loader";
 import SearchBar from "./SearchBar/SearchBar";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
-// import toast from "react-hot-toast";
 import ImageModal from "./ImageModal/ImageModal";
 import toast from "react-hot-toast/headless";
 
@@ -17,7 +16,7 @@ const App = () => {
   const [isError, setIsError] = useState(false);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [relatedImage, setRelatedImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const openModal = (image) => {
@@ -30,7 +29,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (!query.trim()) {
+    if (!query) {
       return;
     }
 
@@ -65,7 +64,7 @@ const App = () => {
       <SearchBar onChangQuery={handleChangQuery} />
       <ImageGallery images={images} onClickOpenModal={openModal} />
       {isLoading && <Loader />}
-      {page < totalPages && (
+      {images.length > 0 && page < totalPages && (
         <LoadMoreBtn onClick={() => setPage((prev) => prev + 1)} />
       )}
       {isError && <ErrorMessage />}
