@@ -1,4 +1,6 @@
 .box {
   margin: 0 auto;
-  background-color: blue;
+  background-color: #fff;
+  max-width: 100vh;
+  text-align: center;
 }

@@ -1,4 +1,4 @@
-const ErrorMessager = () => {
+const ErrorMessage = () => {
   return (
     <div>
       <h2>Щось сталось! Перезавантаж сторінку</h2>
@@ -6,4 +6,4 @@ const ErrorMessager = () => {
   );
 };
 
-export default ErrorMessager;
+export default ErrorMessage;

@@ -10,18 +10,21 @@ const SearchBar = ({ onChangQuery }) => {
     onChangQuery(values.query);
   };
   return (
-    <header className={s.box}>
+    <header className={s.wrapper}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Form>
-          <button type="submit">
-            <HiMagnifyingGlass />
-          </button>
-          <Field
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            name="query"
-          />
+          <div className={s.box}>
+            <button type="submit" className={s.btn}>
+              <HiMagnifyingGlass className={s.icon} />
+            </button>
+            <Field
+              autoComplete="off"
+              autoFocus
+              placeholder="Search images and photos"
+              name="query"
+              className={s.field}
+            />
+          </div>
         </Form>
       </Formik>
     </header>

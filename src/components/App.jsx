@@ -1,13 +1,15 @@
-// import s from "./App.Module.css";
+import s from "./App.Module.css";
 
 import { useEffect, useState } from "react";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import { fetchImages } from "../services/api";
 import Loader from "./Loader/Loader";
 import SearchBar from "./SearchBar/SearchBar";
-import ErrorMessager from "./ErrorMessager/ErrorMessager";
+import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+import ImageModal from "./ImageModal/ImageModal";
+import toast from "react-hot-toast/headless";
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -16,9 +18,21 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [relatedImage, setRelatedImage] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = (image) => {
+    setIsOpen(true);
+    setRelatedImage(image);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+    setRelatedImage(null);
+  };
 
   useEffect(() => {
-    if (!query) return;
+    if (!query.trim()) {
+      return;
+    }
 
     const getData = async () => {
       try {
@@ -27,6 +41,9 @@ const App = () => {
         const { results, totalPages } = await fetchImages(query, page);
         setTotalPages(totalPages);
         setImages((prev) => [...prev, ...results]);
+        if (totalPages === page) {
+          toast.success("wow you have already uploaded all the images");
+        }
       } catch (error) {
         console.error(error);
         setIsError(true);
@@ -44,14 +61,15 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className={s.box}>
       <SearchBar onChangQuery={handleChangQuery} />
-      <ImageGallery images={images} />
+      <ImageGallery images={images} onClickOpenModal={openModal} />
       {isLoading && <Loader />}
       {page < totalPages && (
         <LoadMoreBtn onClick={() => setPage((prev) => prev + 1)} />
       )}
-      {isError && <ErrorMessager />}
+      {isError && <ErrorMessage />}
+      {isOpen && <ImageModal image={relatedImage} onClose={closeModal} />}
     </div>
   );
 };

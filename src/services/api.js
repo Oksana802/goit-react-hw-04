@@ -1,18 +1,24 @@
 import axios from "axios";
 
-// const ACCESS_KEY = "Opo1OXeY11YPl_Vh5V07W2pdWLleW6w5iS2PMl8kQyE";
 axios.defaults.baseURL = "https://api.unsplash.com";
 
-export const fetchImages = async (query, page, perPage = 15) => {
-  const response = await axios.get(
-    `/search/photos?client_id=Opo1OXeY11YPl_Vh5V07W2pdWLleW6w5iS2PMl8kQyE`,
-    {
+export const fetchImages = async (query, page, perPage = 12) => {
+  try {
+    const response = await axios.get(`/search/photos`, {
       params: {
+        client_id: "Opo1OXeY11YPl_Vh5V07W2pdWLleW6w5iS2PMl8kQyE",
         query,
         page,
         per_page: perPage,
       },
-    }
-  );
-  return response.data;
+    });
+
+    const { results, total } = response.data;
+    const totalPages = Math.ceil(total / perPage);
+
+    return { results, totalPages };
+  } catch (error) {
+    console.error("Error fetching images:", error.message);
+    throw error;
+  }
 };
