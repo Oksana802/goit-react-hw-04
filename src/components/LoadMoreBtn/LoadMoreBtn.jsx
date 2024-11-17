@@ -3,7 +3,7 @@ const LoadMoreBtn = ({ onClick }) => {
   return (
     <div>
       <button type="button" onClick={onClick} className={s.box}>
-        LoadMoreBtn
+        Load more
       </button>
     </div>
   );

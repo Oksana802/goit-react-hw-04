@@ -29,7 +29,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (!query) {
+    if (!query.trim()) {
       return;
     }
 
