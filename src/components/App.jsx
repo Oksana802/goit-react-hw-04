@@ -1,4 +1,3 @@
-import s from "./App.module.css";
 import { useEffect, useState } from "react";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import { fetchImages } from "../services/api";
@@ -8,6 +7,7 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./ImageModal/ImageModal";
 import toast from "react-hot-toast/headless";
+import s from "./App.module.css";
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -18,10 +18,12 @@ const App = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [relatedImage, setRelatedImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+
   const openModal = (image) => {
     setIsOpen(true);
     setRelatedImage(image);
   };
+
   const closeModal = () => {
     setIsOpen(false);
     setRelatedImage(null);
@@ -40,7 +42,7 @@ const App = () => {
         setTotalPages(totalPages);
         setImages((prev) => [...prev, ...results]);
         if (totalPages === page) {
-          toast.success("wow you have already uploaded all the images");
+          toast.success("Wow! You have already uploaded all the images.");
         }
       } catch (error) {
         console.error(error);
@@ -67,7 +69,7 @@ const App = () => {
         <LoadMoreBtn onClick={() => setPage((prev) => prev + 1)} />
       )}
       {isError && <ErrorMessage />}
-      {isOpen && <ImageModal image={relatedImage} onClose={closeModal} />}
+      <ImageModal isOpen={isOpen} image={relatedImage} onClose={closeModal} />
     </div>
   );
 };
