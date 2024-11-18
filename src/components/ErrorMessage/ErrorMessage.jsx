@@ -1,7 +1,11 @@
+import s from "./ErrorMessage.module.css";
 const ErrorMessage = () => {
   return (
     <div>
-      <h2>Щось сталось! Перезавантаж сторінку</h2>
+      <h2 className={s.hung}>
+        Something happened! <br />
+        Reload the page
+      </h2>
     </div>
   );
 };

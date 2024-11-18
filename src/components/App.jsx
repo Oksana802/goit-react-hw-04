@@ -8,7 +8,6 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./ImageModal/ImageModal";
 import toast from "react-hot-toast/headless";
-import ReactModal from "react-modal";
 
 const App = () => {
   const [images, setImages] = useState([]);
