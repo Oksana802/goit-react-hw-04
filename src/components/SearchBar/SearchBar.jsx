@@ -1,12 +1,17 @@
 import { Field, Form, Formik } from "formik";
 import s from "./SearchBar.module.css";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import toast from "react-hot-toast";
 
 const SearchBar = ({ onChangQuery }) => {
   const initialValues = {
     query: "",
   };
   const handleSubmit = (values) => {
+    if (!values.query.trim()) {
+      toast.success("Please enter a search term");
+      return;
+    }
     onChangQuery(values.query);
   };
   return (
