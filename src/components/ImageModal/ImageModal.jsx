@@ -1,4 +1,5 @@
 import s from "./imageModal.module.css";
+
 const ImageModal = ({ image, onClose }) => {
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
