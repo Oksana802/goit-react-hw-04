@@ -54,9 +54,9 @@ const App = () => {
     getData();
   }, [query, page]);
 
-  const handleChangQuery = (query) => {
+  const handleChangQuery = (newQuery) => {
     setImages([]);
-    setQuery(query);
+    setQuery(newQuery);
     setPage(1);
   };
 

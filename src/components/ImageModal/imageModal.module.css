@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 80vh;
+  max-width: 80vw;
   max-height: 80vh;
   overflow: auto;
   background: linear-gradient(
